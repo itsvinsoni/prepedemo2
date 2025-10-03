@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nucleic Acids - Complete Notes for DMLT | Prepe</title>
+    <style>
+        :root {
+            --prepe-orange: #fb923c;
+            --prepe-orange-light: #fff7ed;
+            --prepe-orange-dark: #f97316;
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --border-color: #e5e7eb;
+            --bg-white: #ffffff;
+            --bg-light-gray: #f9fafb;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: var(--border-color);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--prepe-orange), var(--prepe-orange-dark));
+            transition: width 0.1s linear;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slide {
+            width: 100%;
+            max-width: 1080px;
+            min-height: 100vh;
+            height: auto;
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .brand-logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--prepe-orange);
+            display: flex;
+            align-items: center;
+        }
+        .brand-logo svg {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        .slide-number {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-light);
+            background-color: var(--bg-light-gray);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .slide-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .slide-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            flex-grow: 1;
+            width: 100%;
+        }
+        .full-width { grid-template-columns: 1fr; }
+
+        .main-panel, .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '✓';
+            color: var(--prepe-orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        li strong {
+            display: block;
+            font-size: 18px;
+            color: var(--text-dark);
+        }
+        li p {
+            font-size: 15px;
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        .slide-footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .tag {
+            background-color: var(--prepe-orange-light);
+            color: var(--prepe-orange-dark);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Infographic Elements */
+        .info-card {
+            background-color: var(--bg-light-gray);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--prepe-orange);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .info-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .info-card h3 svg { margin-right: 10px; }
+
+        .mini-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .mini-table th, .mini-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+        .mini-table th {
+            background-color: var(--prepe-orange-light);
+            color: var(--prepe-orange-dark);
+            font-weight: 700;
+        }
+        .mini-table tr:last-child td { border-bottom: none; }
+        .mini-table tr:hover { background-color: var(--prepe-orange-light); }
+        
+        .comparison-chart {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 15px;
+        }
+        .comparison-chart h4 { text-align: center; font-size: 18px; color: var(--prepe-orange-dark); }
+        .comparison-chart .vs { font-size: 24px; font-weight: 700; color: var(--prepe-orange); }
+        .comparison-chart ul { padding-left: 15px; }
+        .comparison-chart ul li::before { content: '•'; left: -5px; }
+
+        .flow-diagram { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .flow-box {
+            background: var(--bg-white);
+            border: 2px solid var(--prepe-orange);
+            padding: 10px 20px;
+            border-radius: 8px;
+            width: 80%;
+            text-align: center;
+            font-weight: 600;
+        }
+        .flow-arrow { font-size: 24px; color: var(--prepe-orange); font-weight: bold; }
+        
+        .fact-tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .fact-tile {
+            background: var(--prepe-orange-light);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .fact-tile .value { font-size: 24px; font-weight: 700; color: var(--prepe-orange-dark); }
+        .fact-tile .label { font-size: 14px; color: var(--text-light); }
+
+        /* Hero Slide (#slide-1) */
+        #slide-1 {
+            text-align: center;
+            justify-content: center;
+        }
+        #slide-1 .slide-header { border: none; }
+        #slide-1 .hero-title {
+            font-size: 64px;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--prepe-orange-dark), var(--text-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        #slide-1 .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        #slide-1 .hero-cta {
+            margin-top: 40px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-light);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* PYQ Section */
+        .pyq-box {
+            background-color: #fff9e6;
+            border: 2px dashed #ffd666;
+            border-radius: 12px;
+            padding: 25px;
+        }
+        .pyq-box h3 {
+            color: #d97706;
+        }
+        .pyq-box ol li {
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .pyq-box ol li em {
+            font-weight: normal;
+            color: var(--text-light);
+        }
+        .pyq-box ol li::marker {
+            font-weight: bold;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .slide {
+                padding: 30px 25px;
+                min-height: auto;
+            }
+            .slide-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .slide { padding: 25px 15px; }
+            .slide-title { font-size: 28px; }
+            #slide-1 .hero-title { font-size: 48px; }
+            #slide-1 .hero-subtitle { font-size: 16px; }
+            .slide-header { flex-direction: column; gap: 10px; }
+            li strong { font-size: 16px; }
+            li p { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <main>
+
+        <!-- Slide 1: परिचय -->
+        <section class="slide" id="slide-1">
+            <div class="slide-header">
+                <div class="brand-logo">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg>
+                    Prepe
+                </div>
+            </div>
+            <h1 class="hero-title">Nucleic Acids</h1>
+            <p class="hero-subtitle">DMLT 2nd Year Biochemistry के लिए सम्पूर्ण, एग्जाम-फोकस्ड नोट्स। Basics से लेकर Clinical Disorders तक सब कुछ कवर।</p>
+            
+            <div class="fact-tile-grid">
+                <div class="fact-tile">
+                    <div class="value">2</div>
+                    <div class="label">मुख्य प्रकार (DNA & RNA)</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="value">4</div>
+                    <div class="label">नाइट्रोजन बेस (A, T, C, G)</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="value">5+</div>
+                    <div class="label">प्रमुख Metabolic Disorders</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="value">Exam</div>
+                    <div class="label">Gout पर विशेष फोकस</div>
+                </div>
+            </div>
+
+            <p class="hero-cta">सम्पूर्ण नोट्स के लिए नीचे स्क्रॉल करें ↓</p>
+        </section>
+
+        <!-- Slide 2: Nucleoside और Nucleotide -->
+        <section class="slide" id="slide-2">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 2 / 20</div>
+            </div>
+            <h2 class="slide-title">Nucleoside & Nucleotide</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Nucleoside (न्यूक्लियोसाइड)</strong><p>यह दो components से बनता है: एक Pentose Sugar और एक Nitrogenous Base.</p></li>
+                        <li><strong>Nucleotide (न्यूक्लियोटाइड)</strong><p>यह तीन components से बनता है: Pentose Sugar, Nitrogenous Base, और एक या अधिक Phosphate Group.</p></li>
+                        <li><strong>Sugar Type (शुगर का प्रकार)</strong><p>DNA में Deoxyribose शुगर होती है, जबकि RNA में Ribose शुगर होती है।</p></li>
+                        <li><strong>Linkage (बंधन)</strong><p>शुगर और बेस के बीच Glycosidic Bond होता है। शुगर और फॉस्फेट के बीच Phosphoester Bond होता है।</p></li>
+                        <li><strong>Function of Nucleotides (न्यूक्लियोटाइड के कार्य)</strong><p>ये DNA और RNA के building blocks हैं। ATP (Adenosine Triphosphate) एक nucleotide है जो सेल की energy currency है।</p></li>
+                         <li><strong>Naming Convention (नामकरण)</strong><p>Nucleoside का नाम बेस पर आधारित होता है (e.g., Adenine + Ribose = Adenosine)। Nucleotide का नाम फॉस्फेट ग्रुप के साथ होता है (e.g., Adenosine Monophosphate - AMP)।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>संरचनात्मक अंतर</h3>
+                        <table class="mini-table">
+                            <thead><tr><th>Component</th><th>Nucleoside</th><th>Nucleotide</th></tr></thead>
+                            <tbody>
+                                <tr><td>Sugar</td><td>✓</td><td>✓</td></tr>
+                                <tr><td>Base</td><td>✓</td><td>✓</td></tr>
+                                <tr><td>Phosphate</td><td>✗</td><td>✓</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg>उदाहरण</h3>
+                        <p><strong>Nucleoside:</strong> Adenosine, Guanosine, Cytidine, Thymidine, Uridine.</p>
+                        <p><strong>Nucleotide:</strong> AMP, GMP, CMP, TMP, UMP (Monophosphates), ADP, ATP (Di/Triphosphates).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">Base + Sugar = Nucleoside</span>
+                <span class="tag">Nucleoside + Phosphate = Nucleotide</span>
+            </div>
+        </section>
+
+        <!-- Slide 3: Purines और Pyrimidines -->
+        <section class="slide" id="slide-3">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 3 / 20</div>
+            </div>
+            <h2 class="slide-title">Purines & Pyrimidines</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                     <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>मुख्य अंतर</h3>
+                        <div class="comparison-chart">
+                            <div>
+                                <h4>Purines (प्यूरीन)</h4>
+                                <ul>
+                                    <li>Double-ring structure (दो रिंग वाली संरचना)</li>
+                                    <li>Adenine (A) और Guanine (G)</li>
+                                    <li>Mnemonic: <strong>Pu</strong>re <strong>A</strong>s <strong>G</strong>old</li>
+                                </ul>
+                            </div>
+                            <div class="vs">VS</div>
+                            <div>
+                                <h4>Pyrimidines (पाइरिमिडीन)</h4>
+                                <ul>
+                                    <li>Single-ring structure (एक रिंग वाली संरचना)</li>
+                                    <li>Cytosine (C), Thymine (T), Uracil (U)</li>
+                                    <li>Mnemonic: <strong>CUT</strong> the <strong>Py</strong> (Pie)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li><strong>Base Pairing (बेस पेयरिंग)</strong><p>DNA में, Adenine (A) हमेशा Thymine (T) के साथ (2 हाइड्रोजन बॉन्ड) और Guanine (G) हमेशा Cytosine (C) के साथ (3 हाइड्रोजन बॉन्ड) जुड़ता है।</p></li>
+                        <li><strong>Uracil in RNA (RNA में यूरेसिल)</strong><p>RNA में Thymine (T) की जगह Uracil (U) होता है, जो Adenine (A) के साथ जुड़ता है।</p></li>
+                        <li><strong>Clinical Relevance (क्लिनिकल महत्व)</strong><p>Purine metabolism में गड़बड़ी से Gout जैसी बीमारियां होती हैं। Pyrimidine metabolism के defects दुर्लभ हैं, लेकिन Orotic Aciduria एक उदाहरण है।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>संरचना</h3>
+                        <p><strong>Purines:</strong> एक 6-membered ring और एक 5-membered ring से मिलकर बनी होती है।</p>
+                        <p><strong>Pyrimidines:</strong> केवल एक 6-membered ring होती है।</p>
+                        <p>यह structural difference उनके metabolism और function को प्रभावित करता है।</p>
+                    </div>
+                     <div class="info-card">
+                         <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>याद रखने की ट्रिक</h3>
+                         <p><strong>Pyrimidines</strong> में 'y' होता है, जैसे Cytosine और Thymine में।</p>
+                         <p><strong>Purines</strong> छोटे नाम वाले होते हैं लेकिन उनकी संरचना बड़ी (दो रिंग) होती है।</p>
+                     </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">Purines: A, G</span>
+                <span class="tag">Pyrimidines: C, T, U</span>
+                <span class="tag">A=T (2 H-Bonds)</span>
+                <span class="tag">G≡C (3 H-Bonds)</span>
+            </div>
+        </section>
+        
+        <!-- Slide 4: DNA की संरचना -->
+        <section class="slide" id="slide-4">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 4 / 20</div>
+            </div>
+            <h2 class="slide-title">Structure of DNA (DNA की संरचना)</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Double Helix Model (डबल हेलिक्स मॉडल)</strong><p>James Watson और Francis Crick ने 1953 में यह मॉडल प्रस्तावित किया। यह DNA की 3D संरचना को बताता है।</p></li>
+                        <li><strong>Antiparallel Strands (एंटीपैरेलल स्ट्रैंड्स)</strong><p>DNA के दो strands एक-दूसरे के विपरीत दिशा में होते हैं। एक strand 5' से 3' दिशा में होता है, तो दूसरा 3' से 5' दिशा में।</p></li>
+                        <li><strong>Sugar-Phosphate Backbone (शुगर-फॉस्फेट बैकबोन)</strong><p>हेलिक्स का बाहरी हिस्सा Deoxyribose sugar और phosphate groups से बनता है। यह संरचना को stability प्रदान करता है।</p></li>
+                        <li><strong>Nitrogenous Bases Inside (अंदर की ओर नाइट्रोजनस बेस)</strong><p>Purine और Pyrimidine बेस हेलिक्स के अंदर की ओर होते हैं, जो सीढ़ियों के डंडों की तरह होते हैं।</p></li>
+                        <li><strong>Major and Minor Grooves (मेजर और माइनर ग्रूव्स)</strong><p>हेलिक्स में दो तरह के घुमाव होते हैं - Major groove (बड़ा) और Minor groove (छोटा)। ये proteins के साथ binding के लिए sites प्रदान करते हैं।</p></li>
+                        <li><strong>Chargaff's Rule (चारगाफ का नियम)</strong><p>DNA में, purines की मात्रा pyrimidines के बराबर होती है। [A] = [T] और [G] = [C]।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><award/><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 17 17 23 15.79 13.88"></polyline></svg>Watson & Crick Model के मुख्य बिंदु</h3>
+                        <table class="mini-table">
+                            <thead>
+                                <tr><th>Feature</th><th>Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Shape</td><td>Right-handed double helix</td></tr>
+                                <tr><td>Strands</td><td>2, Antiparallel</td></tr>
+                                <tr><td>Backbone</td><td>Sugar-Phosphate</td></tr>
+                                <tr><td>Pairing</td><td>A-T, G-C</td></tr>
+                                <tr><td>Forces</td><td>Hydrogen Bonds</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <div class="info-card">
+                         <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>DNA का महत्व</h3>
+                         <p>DNA genetic information (आनुवंशिक जानकारी) को store करता है जो एक पीढ़ी से दूसरी पीढ़ी में जाती है।</p>
+                     </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">Watson & Crick (1953)</span>
+                <span class="tag">Double Helix</span>
+                <span class="tag">Antiparallel 5'-3' & 3'-5'</span>
+                <span class="tag">Genetic Material</span>
+            </div>
+        </section>
+
+        <!-- Slide 5: RNA की संरचना -->
+        <section class="slide" id="slide-5">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 5 / 20</div>
+            </div>
+            <h2 class="slide-title">Structure and Types of RNA (RNA की संरचना और प्रकार)</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Single-Stranded (एकल-स्ट्रैंडेड)</strong><p>DNA के विपरीत, RNA आमतौर पर single-stranded होता है, हालांकि यह खुद पर fold होकर double-stranded क्षेत्र बना सकता है।</p></li>
+                        <li><strong>Ribose Sugar (राइबोज शुगर)</strong><p>RNA में pentose sugar, Ribose होती है, जिसके 2' carbon पर एक hydroxyl (-OH) group होता है। यह इसे DNA से कम stable बनाता है।</p></li>
+                        <li><strong>Uracil Base (यूरेसिल बेस)</strong><p>RNA में Thymine (T) की जगह Uracil (U) होता है, जो Adenine (A) के साथ pair करता है।</p></li>
+                        <li><strong>Shorter Chains (छोटी श्रृंखलाएं)</strong><p>RNA molecules आमतौर पर DNA molecules की तुलना में बहुत छोटे होते हैं।</p></li>
+                    </ul>
+                     <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>RNA के मुख्य प्रकार और कार्य</h3>
+                    </div>
+                </div>
+                <div class="side-panel">
+                   <table class="mini-table">
+                        <thead><tr><th>Type</th><th>Full Form</th><th>Function (कार्य)</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>mRNA</strong></td>
+                                <td>Messenger RNA</td>
+                                <td>DNA से genetic code को ribosome तक ले जाता है (संदेशवाहक)।</td>
+                            </tr>
+                            <tr>
+                                <td><strong>tRNA</strong></td>
+                                <td>Transfer RNA</td>
+                                <td>Amino acid को ribosome तक लाता है protein synthesis के लिए (ट्रांसफर)।</td>
+                            </tr>
+                            <tr>
+                                <td><strong>rRNA</strong></td>
+                                <td>Ribosomal RNA</td>
+                                <td>Ribosome का structural और catalytic component है (राइबोसोम निर्माता)।</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <div class="info-card">
+                         <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>DNA vs RNA</h3>
+                         <p><strong>Sugar:</strong> Deoxyribose vs Ribose</p>
+                         <p><strong>Bases:</strong> ATGC vs AUGC</p>
+                         <p><strong>Structure:</strong> Double-stranded vs Single-stranded</p>
+                         <p><strong>Function:</strong> Genetic storage vs Protein synthesis</p>
+                     </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">mRNA: Messenger</span>
+                <span class="tag">tRNA: Transfer</span>
+                <span class="tag">rRNA: Ribosomal</span>
+                <span class="tag">Single-Stranded</span>
+                <span class="tag">Uracil instead of Thymine</span>
+            </div>
+        </section>
+
+        <!-- Slide 6: DNA Replication -->
+        <section class="slide" id="slide-6">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 6 / 20</div>
+            </div>
+            <h2 class="slide-title">DNA Replication (DNA प्रतिकृति)</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Definition (परिभाषा)</strong><p>यह वह process है जिससे एक DNA molecule अपनी दो identical copies बनाता है।</p></li>
+                        <li><strong>Semiconservative Model (अर्ध-संरक्षी मॉडल)</strong><p>प्रत्येक नए DNA molecule में एक old (parental) strand और एक new strand होता है।</p></li>
+                        <li><strong>Origin of Replication (प्रतिकृति की उत्पत्ति)</strong><p>Replication एक specific point से शुरू होती है जिसे 'ori' site कहा जाता है।</p></li>
+                        <li><strong>Replication Fork (प्रतिकृति फोर्क)</strong><p>Y-आकार की संरचना जहां DNA के strands अलग होते हैं और replication होती है।</p></li>
+                        <li><strong>Leading Strand (लीडिंग स्ट्रैंड)</strong><p>यह strand 5' से 3' दिशा में continuously (लगातार) बनता है।</p></li>
+                        <li><strong>Lagging Strand (लैगिंग स्ट्रैंड)</strong><p>यह strand छोटे टुकड़ों में बनता है जिन्हें Okazaki Fragments कहते हैं, जिन्हें बाद में जोड़ा जाता है।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                     <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><circle cx="12" cy="15" r="2"></circle><path d="M12 12v1"></path><path d="M12 18v-1"></path><path d="m15 13-1 1"></path><path d="m9 16 1-1"></path><path d="m15 17-1-1"></path><path d="m9 14 1 1"></path></svg>Key Enzymes (मुख्य एंजाइम)</h3>
+                        <table class="mini-table">
+                            <thead><tr><th>Enzyme</th><th>Function</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Helicase</strong></td><td>DNA हेलिक्स को खोलता है।</td></tr>
+                                <tr><td><strong>Primase</strong></td><td>RNA प्राइमर बनाता है।</td></tr>
+                                <tr><td><strong>DNA Polymerase III</strong></td><td>नए DNA strand को जोड़ता है।</td></tr>
+                                <tr><td><strong>DNA Polymerase I</strong></td><td>RNA प्राइमर को हटाता है।</td></tr>
+                                <tr><td><strong>Ligase</strong></td><td>Okazaki fragments को जोड़ता है।</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+             <div class="slide-footer">
+                <span class="tag">Semiconservative</span>
+                <span class="tag">Helicase unzips</span>
+                <span class="tag">Polymerase builds</span>
+                <span class="tag">Ligase glues</span>
+            </div>
+        </section>
+
+        <!-- Slide 7: Transcription -->
+        <section class="slide" id="slide-7">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 7 / 20</div>
+            </div>
+            <h2 class="slide-title">Transcription (अनुलेखन)</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Definition (परिभाषा)</strong><p>DNA के एक gene से messenger RNA (mRNA) बनाने की प्रक्रिया। यह nucleus (केंद्रक) में होती है।</p></li>
+                        <li><strong>Purpose (उद्देश्य)</strong><p>Genetic information को DNA से बाहर निकालकर ribosome तक पहुंचाना, जहां protein बन सके।</p></li>
+                        <li><strong>Key Enzyme (मुख्य एंजाइम)</strong><p>RNA Polymerase इस प्रक्रिया को catalyze करता है। यह DNA को पढ़ता है और एक complementary mRNA strand बनाता है।</p></li>
+                        <li><strong>Template Strand (टेम्पलेट स्ट्रैंड)</strong><p>DNA के दो strands में से केवल एक, जिसे template या antisense strand कहा जाता है, को mRNA बनाने के लिए पढ़ा जाता है।</p></li>
+                        <li><strong>Post-transcriptional Modification (अनुलेखन के बाद संशोधन)</strong><p>Eukaryotes में, बने हुए pre-mRNA में Splicing (introns हटाना), Capping (5' end पर) और Tailing (3' end पर poly-A tail जोड़ना) होता है।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"></path><path d="M12 4h.01"></path><path d="M20 12h.01"></path><path d="M4 12h.01"></path><path d="M17.66 17.66h.01"></path><path d="M6.34 6.34h.01"></path><path d="M17.66 6.34h.01"></path><path d="M6.34 17.66h.01"></path></svg>Steps of Transcription</h3>
+                        <div class="flow-diagram">
+                            <div class="flow-box">1. Initiation (प्रारंभ)</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-box">2. Elongation (दीर्घीकरण)</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-box">3. Termination (समापन)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">DNA → mRNA</span>
+                <span class="tag">Location: Nucleus</span>
+                <span class="tag">Enzyme: RNA Polymerase</span>
+                <span class="tag">Product: mRNA</span>
+            </div>
+        </section>
+
+        <!-- Slide 8: Translation -->
+        <section class="slide" id="slide-8">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 8 / 20</div>
+            </div>
+            <h2 class="slide-title">Translation (Protein Synthesis)</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Definition (परिभाषा)</strong><p>mRNA पर मौजूद genetic code को पढ़कर amino acids की एक chain (polypeptide या protein) बनाने की प्रक्रिया। यह cytoplasm में ribosome पर होती है।</p></li>
+                        <li><strong>Codons (कोडॉन)</strong><p>mRNA पर तीन nucleotides का एक sequence जो एक specific amino acid को code करता है। जैसे, AUG methionine को code करता है और यह start codon भी है।</p></li>
+                        <li><strong>tRNA's Role (tRNA की भूमिका)</strong><p>Transfer RNA (tRNA) एक adaptor molecule है। इसके एक end पर anticodon (जो mRNA codon से जुड़ता है) और दूसरे end पर corresponding amino acid होता है।</p></li>
+                        <li><strong>Ribosome's Role (राइबोसोम की भूमिका)</strong><p>Ribosome (rRNA + protein) वह machinery है जो mRNA को पढ़ती है और tRNA द्वारा लाए गए amino acids के बीच peptide bond बनाती है।</p></li>
+                         <li><strong>Stop Codons (स्टॉप कोडॉन)</strong><p>UAA, UAG, और UGA stop codons हैं। जब ribosome इन पर पहुंचता है, तो protein synthesis समाप्त हो जाता है।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                     <div class="info-card">
+                        <h3>Central Dogma of Molecular Biology</h3>
+                         <div class="flow-diagram">
+                             <div class="flow-box">DNA</div>
+                             <div class="flow-arrow">↓ Replication</div>
+                             <div class="flow-box">DNA</div>
+                             <div class="flow-arrow">↓ Transcription</div>
+                             <div class="flow-box">RNA</div>
+                             <div class="flow-arrow">↓ Translation</div>
+                             <div class="flow-box">Protein</div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+             <div class="slide-footer">
+                <span class="tag">mRNA → Protein</span>
+                <span class="tag">Location: Ribosome</span>
+                <span class="tag">Key Players: mRNA, tRNA, rRNA</span>
+                <span class="tag">Start Codon: AUG</span>
+            </div>
+        </section>
+
+        <!-- Slide 9: Genetic Code -->
+        <section class="slide" id="slide-9">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 9 / 20</div>
+            </div>
+            <h2 class="slide-title">The Genetic Code (आनुवंशिक कूट)</h2>
+            <div class="slide-content full-width">
+                <div class="main-panel">
+                     <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><list/><path d="M21 10c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v6z"></path><path d="M21 17c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v2z"></path></svg>Properties of the Genetic Code</h3>
+                        <table class="mini-table">
+                            <thead><tr><th>Property</th><th>Description (विवरण)</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Triplet Code (त्रिक कूट)</strong></td><td>तीन nucleotides (एक codon) एक amino acid को code करते हैं।</td></tr>
+                                <tr><td><strong>Universal (सार्वभौमिक)</strong></td><td>लगभग सभी जीवों में एक ही codon एक ही amino acid को code करता है।</td></tr>
+                                <tr><td><strong>Unambiguous (असंदिग्ध)</strong></td><td>एक codon केवल एक ही amino acid को code करता है।</td></tr>
+                                <tr><td><strong>Degenerate (अपहसित)</strong></td><td>एक amino acid को एक से अधिक codons द्वारा code किया जा सकता है।</td></tr>
+                                <tr><td><strong>Non-overlapping (अतिव्यापी नहीं)</strong></td><td>Code को लगातार तीन-तीन के समूह में पढ़ा जाता है।</td></tr>
+                                <tr><td><strong>Comma-less (अल्पविराम रहित)</strong></td><td>दो codons के बीच कोई gap नहीं होता है।</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+             <div class="slide-footer">
+                <span class="tag">Triplet</span>
+                <span class="tag">Universal</span>
+                <span class="tag">Degenerate</span>
+                <span class="tag">Unambiguous</span>
+                <span class="tag">Total Codons: 64</span>
+                <span class="tag">Sense Codons: 61</span>
+                <span class="tag">Nonsense (Stop) Codons: 3</span>
+            </div>
+        </section>
+
+        <!-- Slide 10: Nucleic Acid Metabolism Overview -->
+        <section class="slide" id="slide-10">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 10 / 20</div>
+            </div>
+            <h2 class="slide-title">Nucleic Acid Metabolism Overview</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <div class="info-card">
+                        <h3>Purine Metabolism</h3>
+                        <ul>
+                            <li><strong>Synthesis (संश्लेषण)</strong><p>De novo pathway (सरल precursors से) या Salvage pathway (मौजूदा बेस से) द्वारा होता है।</p></li>
+                            <li><strong>End Product (अंतिम उत्पाद)</strong><p>मनुष्यों में purine के degradation का अंतिम उत्पाद Uric Acid है।</p></li>
+                            <li><strong>Excretion (उत्सर्जन)</strong><p>Uric acid मुख्य रूप से kidneys द्वारा urine में उत्सर्जित होता है।</p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3>Pyrimidine Metabolism</h3>
+                        <ul>
+                            <li><strong>Synthesis (संश्लेषण)</strong><p>इसका भी De novo और Salvage pathway होता है।</p></li>
+                            <li><strong>End Products (अंतिम उत्पाद)</strong><p>इसके अंतिम उत्पाद highly water-soluble होते हैं, जैसे β-Alanine, β-aminoisobutyrate, NH₃, और CO₂।</p></li>
+                            <li><strong>Clinical Note</strong><p>चूंकि अंतिम उत्पाद घुलनशील होते हैं, pyrimidine metabolism के disorders, purine disorders की तुलना में कम आम हैं।</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">Purine End Product: Uric Acid</span>
+                <span class="tag">Pyrimidine End Products: Soluble compounds</span>
+                <span class="tag">Pathways: De novo & Salvage</span>
+            </div>
+        </section>
+        
+        <!-- Slide 11: Metabolic Disorders Intro -->
+        <section class="slide" id="slide-11">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 11 / 20</div>
+            </div>
+            <h2 class="slide-title">Introduction to Metabolic Disorders</h2>
+            <div class="slide-content full-width">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Definition (परिभाषा)</strong><p>ये वे रोग हैं जो nucleic acid के synthesis (संश्लेषण) या degradation (टूटने) के pathway में किसी enzyme की कमी या दोष के कारण होते हैं।</p></li>
+                        <li><strong>Causes (कारण)</strong><p>आमतौर पर ये genetic (आनुवंशिक) होते हैं, यानी माता-पिता से विरासत में मिले defective gene के कारण।</p></li>
+                        <li><strong>Consequences (परिणाम)</strong><p>दोषपूर्ण enzyme के कारण, कोई substrate जमा हो सकता है या कोई आवश्यक product नहीं बन पाता है, जिससे बीमारी होती है।</p></li>
+                        <li><strong>DMLT Focus (DMLT के लिए महत्व)</strong><p>इन disorders का diagnosis अक्सर blood या urine में abnormal metabolites के स्तर को मापकर किया जाता है। एक lab technologist के रूप में, इन tests को समझना महत्वपूर्ण है।</p></li>
+                    </ul>
+                     <div class="info-card">
+                        <h3>Commonly Encountered Disorders</h3>
+                        <div class="fact-tile-grid">
+                            <div class="fact-tile"><div class="label">Gout</div></div>
+                            <div class="fact-tile"><div class="label">Lesch-Nyhan Syndrome</div></div>
+                            <div class="fact-tile"><div class="label">SCID (ADA Deficiency)</div></div>
+                            <div class="fact-tile"><div class="label">Orotic Aciduria</div></div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">Genetic Enzyme Defects</span>
+                <span class="tag">Substrate Accumulation</span>
+                <span class="tag">Product Deficiency</span>
+                <span class="tag">Lab Diagnosis is Key</span>
+            </div>
+        </section>
+        
+        <!-- Slide 12: Gout -->
+        <section class="slide" id="slide-12">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 12 / 20</div>
+            </div>
+            <h2 class="slide-title">Gout - ★ Exam Focus</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Definition (परिभाषा)</strong><p>यह एक प्रकार का inflammatory arthritis है जो Hyperuricemia (blood में uric acid का स्तर बढ़ जाना) के कारण होता है।</p></li>
+                        <li><strong>Cause (कारण)</strong><p>Uric acid के crystals (Monosodium urate crystals) joints (जोड़ों) में जमा हो जाते हैं, जिससे acute pain (तेज दर्द) और inflammation (सूजन) होती है। अक्सर पैर के बड़े अंगूठे का जोड़ प्रभावित होता है।</p></li>
+                        <li><strong>Types (प्रकार)</strong><p><strong>Primary Gout:</strong> Uric acid के overproduction (अधिक उत्पादन) या underexcretion (कम उत्सर्जन) के कारण। <strong>Secondary Gout:</strong> अन्य बीमारियों (जैसे, kidney failure) या दवाओं के कारण।</p></li>
+                         <li><strong>Symptoms (लक्षण)</strong><p>Joints में अचानक तेज दर्द, redness (लालिमा), swelling (सूजन) और warmth (गर्मी)।</p></li>
+                        <li><strong>Treatment Basics (उपचार)</strong><p>दर्द और सूजन के लिए NSAIDs, और uric acid के स्तर को कम करने के लिए Allopurinol जैसी दवाएं।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m10 14-2 2 2 2"></path><path d="m14 18 2-2-2-2"></path></svg>Lab Diagnosis</h3>
+                        <p><strong>1. Serum Uric Acid Test:</strong> Blood में uric acid का level मापना। पुरुषों में >7.0 mg/dL और महिलाओं में >6.0 mg/dL को Hyperuricemia माना जाता है।</p>
+                        <p><strong>2. Synovial Fluid Analysis:</strong> Joint से fluid (Synovial fluid) निकालकर माइक्रोस्कोप के नीचे needle-shaped monosodium urate crystals की उपस्थिति की जांच करना। यह Gout के लिए definitive test है।</p>
+                        <p><strong>3. 24-Hour Urine Uric Acid:</strong> यह पता लगाने के लिए कि मरीज uric acid का overproduction कर रहा है या underexcretion।</p>
+                    </div>
+                </div>
+            </div>
+             <div class="slide-footer">
+                <span class="tag">Hyperuricemia</span>
+                <span class="tag">Urate Crystal Deposition</span>
+                <span class="tag">Joint Pain & Inflammation</span>
+                <span class="tag">Definitive Test: Synovial Fluid Analysis</span>
+            </div>
+        </section>
+
+        <!-- Slide 13: Lesch-Nyhan Syndrome -->
+        <section class="slide" id="slide-13">
+             <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 13 / 20</div>
+            </div>
+            <h2 class="slide-title">Lesch-Nyhan Syndrome</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Genetic Cause (कारण)</strong><p>यह एक दुर्लभ, X-linked recessive disorder है, जो लगभग केवल लड़कों को प्रभावित करता है।</p></li>
+                        <li><strong>Enzyme Deficiency (एंजाइम की कमी)</strong><p>Purine salvage pathway के एक प्रमुख enzyme, <strong>HGPRT (Hypoxanthine-guanine phosphoribosyltransferase)</strong> की कमी के कारण होता है।</p></li>
+                        <li><strong>Pathophysiology (रोग का कारण)</strong><p>HGPRT की कमी से salvage pathway काम नहीं कर पाता, जिससे de novo purine synthesis बढ़ जाता है। इसके परिणामस्वरूप uric acid का overproduction होता है।</p></li>
+                         <li><strong>Importance (महत्व)</strong><p>यह दिखाता है कि कैसे एक single enzyme की कमी से गंभीर neurological और behavioral problems हो सकती हैं।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><alert-triangle/><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Clinical Features</h3>
+                        <p><strong>1. Hyperuricemia:</strong> Gout जैसे लक्षण और kidney stones (गुर्दे की पथरी)।</p>
+                        <p><strong>2. Neurological Dysfunction:</strong> Intellectual disability, cerebral palsy जैसे लक्षण।</p>
+                        <p><strong>3. Self-mutilation (खुद को चोट पहुंचाना):</strong> सबसे विशिष्ट लक्षण - रोगी खुद को काटते या चोट पहुँचाते हैं (जैसे, होंठ या उंगलियां काटना)।</p>
+                        <p>Urine में "orange sand" (uric acid crystals) का दिखना एक प्रारंभिक संकेत हो सकता है।</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">HGPRT Deficiency</span>
+                <span class="tag">X-linked Recessive</span>
+                <span class="tag">Uric Acid Overproduction</span>
+                <span class="tag">Self-mutilation</span>
+            </div>
+        </section>
+
+        <!-- Slide 14: SCID -->
+        <section class="slide" id="slide-14">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 14 / 20</div>
+            </div>
+            <h2 class="slide-title">SCID (Severe Combined Immunodeficiency)</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                         <li><strong>Definition (परिभाषा)</strong><p>SCID एक गंभीर genetic disorder है जिसमें immune system (प्रतिरक्षा प्रणाली) लगभग अनुपस्थित होती है। इसे "बबल बॉय" बीमारी के नाम से भी जाना जाता है।</p></li>
+                        <li><strong>Enzyme Deficiency (एंजाइम की कमी)</strong><p>लगभग 50% मामलों में, यह <strong>Adenosine Deaminase (ADA)</strong> enzyme की कमी के कारण होता है, जो purine metabolism का हिस्सा है।</p></li>
+                        <li><strong>Pathophysiology (रोग का कारण)</strong><p>ADA की कमी से deoxyadenosine जमा हो जाता है, जो dATP में परिवर्तित हो जाता है। dATP का उच्च स्तर T and B lymphocytes (immune cells) के लिए toxic (विषाक्त) होता है, जिससे वे मर जाते हैं।</p></li>
+                         <li><strong>Consequence (परिणाम)</strong><p>T और B कोशिकाओं के बिना, शरीर infections (संक्रमणों) से नहीं लड़ पाता है। रोगी को बार-बार और गंभीर संक्रमण होते हैं।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Lab Relevance</h3>
+                        <p><strong>1. Diagnosis:</strong> Red Blood Cells (RBCs) में ADA enzyme activity को मापकर निदान किया जा सकता है। ADA activity का बहुत कम या अनुपस्थित होना SCID का संकेत है।</p>
+                        <p><strong>2. Complete Blood Count (CBC):</strong> Lymphopenia (lymphocytes की संख्या में भारी कमी) दिखाता है।</p>
+                        <p><strong>3. Newborn Screening:</strong> कई देशों में अब नवजात शिशुओं की SCID के लिए screening की जाती है।</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">ADA Deficiency</span>
+                <span class="tag">"Bubble Boy" Disease</span>
+                <span class="tag">Loss of T and B cells</span>
+                <span class="tag">Lab test: RBC ADA activity</span>
+            </div>
+        </section>
+
+        <!-- Slide 15: Orotic Aciduria -->
+        <section class="slide" id="slide-15">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 15 / 20</div>
+            </div>
+            <h2 class="slide-title">Orotic Aciduria</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <ul>
+                        <li><strong>Disorder Type (विकार का प्रकार)</strong><p>यह Pyrimidine synthesis pathway का एक दुर्लभ autosomal recessive disorder है।</p></li>
+                        <li><strong>Enzyme Deficiency (एंजाइम की कमी)</strong><p>यह <strong>UMP Synthase</strong> enzyme की कमी के कारण होता है, जिसकी दो गतिविधियाँ होती हैं: orotate phosphoribosyltransferase और OMP decarboxylase।</p></li>
+                        <li><strong>Pathophysiology (रोग का कारण)</strong><p>Enzyme की कमी से Pyrimidines (जैसे UMP, CMP, TMP) का synthesis नहीं हो पाता है, और pathway का एक intermediate, <strong>Orotic Acid</strong>, जमा हो जाता है।</p></li>
+                         <li><strong>Treatment (उपचार)</strong><p>रोगी को Uridine दिया जाता है, जो salvage pathway द्वारा UMP में परिवर्तित हो जाता है, जिससे pyrimidine की कमी पूरी हो जाती है।</p></li>
+                    </ul>
+                </div>
+                <div class="side-panel">
+                     <div class="info-card">
+                         <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><circle cx="11" cy="16" r="1"></circle><path d="M12 12h-1v4"></path></svg>Clinical Findings</h3>
+                        <p><strong>1. Megaloblastic Anemia:</strong> ऐसी anemia जो Vitamin B12 या Folate देने पर भी ठीक नहीं होती।</p>
+                        <p><strong>2. Growth Retardation (Failure to thrive):</strong> शारीरिक और मानसिक विकास में बाधा।</p>
+                        <p><strong>3. Orotic Acid in Urine:</strong> Urine में Orotic Acid का अत्यधिक उत्सर्जन (Crystalluria)। यह diagnosis की कुंजी है।</p>
+                     </div>
+                </div>
+            </div>
+             <div class="slide-footer">
+                <span class="tag">Pyrimidine Synthesis Defect</span>
+                <span class="tag">UMP Synthase Deficiency</span>
+                <span class="tag">Megaloblastic Anemia</span>
+                <span class="tag">High Orotic Acid in Urine</span>
+            </div>
+        </section>
+
+        <!-- Slide 16: Other Disorders -->
+        <section class="slide" id="slide-16">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 16 / 20</div>
+            </div>
+            <h2 class="slide-title">Other Disorders (Quick Overview)</h2>
+            <div class="slide-content full-width">
+                 <div class="main-panel">
+                    <table class="mini-table">
+                        <thead>
+                            <tr>
+                                <th>Disorder</th>
+                                <th>Defective Enzyme</th>
+                                <th>Key Features</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Purine Nucleoside Phosphorylase (PNP) Deficiency</strong></td>
+                                <td>Purine Nucleoside Phosphorylase</td>
+                                <td>ADA की कमी के समान लेकिन कम गंभीर। केवल T-cell immunity को प्रभावित करता है। बार-बार infections और neurological problems.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Xanthinuria</strong></td>
+                                <td>Xanthine Oxidase</td>
+                                <td>Xanthine को Uric Acid में बदलने में असमर्थता। Blood और urine में uric acid का स्तर बहुत कम होता है। Xanthine stones बन सकते हैं।</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">PNP Deficiency: T-cell defect</span>
+                <span class="tag">Xanthinuria: Low Uric Acid, Xanthine stones</span>
+            </div>
+        </section>
+
+        <!-- Slide 17: Clinical Tests -->
+        <section class="slide" id="slide-17">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 17 / 20</div>
+            </div>
+            <h2 class="slide-title">Clinical Tests in Nucleic Acid Disorders</h2>
+            <div class="slide-content full-width">
+                 <div class="main-panel">
+                     <div class="info-card">
+                         <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><beaker/><path d="M8 2v2"></path><path d="M16 2v2"></path><path d="M7 11h10"></path><path d="M8.5 11v7.5"></path><path d="M15.5 11v7.5"></path><path d="M5 22h14"></path><path d="M5 2v2.34c0 1.4.92 2.66 2.19 3.16l1.43.58c.95.38 1.99.38 2.94 0l1.43-.58C14.08 7.99 15 6.75 15 5.34V2"></path></svg>Important Lab Tests for DMLT</h3>
+                        <table class="mini-table">
+                            <thead><tr><th>Test Name</th><th>Sample</th><th>Used to Diagnose</th><th>Principle/Method</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Serum Uric Acid</strong></td><td>Blood (Serum)</td><td>Gout, Lesch-Nyhan, Kidney disease</td><td>Enzymatic colorimetric method (Uricase)</td></tr>
+                                <tr><td><strong>Synovial Fluid Analysis</strong></td><td>Joint Fluid</td><td>Gout (Definitive)</td><td>Polarized light microscopy for urate crystals</td></tr>
+                                <tr><td><strong>Enzyme Assays (e.g., ADA, HGPRT)</strong></td><td>RBCs, Fibroblasts</td><td>SCID, Lesch-Nyhan</td><td>Measuring enzyme activity using specific substrates</td></tr>
+                                <tr><td><strong>Urine Orotic Acid</strong></td><td>Urine</td><td>Orotic Aciduria</td><td>Spectrophotometry or HPLC</td></tr>
+                                <tr><td><strong>Complete Blood Count (CBC)</strong></td><td>Whole Blood</td><td>SCID (Lymphopenia), Orotic Aciduria (Anemia)</td><td>Automated cell counter</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+             <div class="slide-footer">
+                <span class="tag">Lab tests are crucial for diagnosis.</span>
+                <span class="tag">DMLT professionals play a key role.</span>
+            </div>
+        </section>
+
+        <!-- Slide 18: Application in Medicine -->
+        <section class="slide" id="slide-18">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 18 / 20</div>
+            </div>
+            <h2 class="slide-title">Applications in Medicine</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>Chemotherapy</h3>
+                        <p>कई anticancer drugs nucleic acid synthesis को target करती हैं ताकि cancer cells के rapid division को रोका जा सके।</p>
+                        <ul>
+                            <li><strong>Antimetabolites:</strong> 5-Fluorouracil (pyrimidine analog) और Methotrexate (folic acid antagonist) DNA synthesis को रोकते हैं।</li>
+                            <li><strong>Allopurinol:</strong> Gout के इलाज के अलावा, इसका उपयोग कुछ chemotherapy के दौरान tumor lysis syndrome से होने वाले hyperuricemia को रोकने के लिए भी किया जाता है।</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><shield/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Antiviral & Antibiotics</h3>
+                        <p>कुछ दवाएं viral या bacterial nucleic acid synthesis को target करती हैं।</p>
+                        <ul>
+                            <li><strong>AZT (Zidovudine):</strong> HIV के इलाज में इस्तेमाल होने वाली यह दवा एक nucleoside analog है जो viral DNA synthesis को रोकती है।</li>
+                            <li><strong>Sulfonamides (Sulfa drugs):</strong> ये bacteria में folic acid synthesis को रोकते हैं, जो nucleic acid बनाने के लिए आवश्यक है।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">Targeting DNA/RNA synthesis is a common drug strategy.</span>
+                <span class="tag">Anticancer</span>
+                <span class="tag">Antiviral</span>
+                <span class="tag">Antibacterial</span>
+            </div>
+        </section>
+
+        <!-- Slide 19: Exam Important Points -->
+        <section class="slide" id="slide-19">
+            <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 19 / 20</div>
+            </div>
+            <h2 class="slide-title">Exam Focus: Important Questions</h2>
+            <div class="slide-content full-width">
+                <div class="pyq-box">
+                    <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>5 Most Expected PYQ-style Questions</h3>
+                    <ol>
+                        <li><strong>Write a detailed note on Gout.</strong> Describe its causes, symptoms, and laboratory diagnosis.<br><em>(Gout पर एक विस्तृत नोट लिखें। इसके कारण, लक्षण और laboratory diagnosis का वर्णन करें।)</em></li>
+                        <li><strong>Differentiate between the structure of DNA and RNA.</strong><br><em>(DNA और RNA की संरचना में अंतर स्पष्ट करें।)</em></li>
+                        <li><strong>What is Lesch-Nyhan Syndrome?</strong> Which enzyme deficiency causes it and what are its key clinical features?<br><em>(Lesch-Nyhan Syndrome क्या है? यह किस enzyme की कमी से होता है और इसके मुख्य clinical features क्या हैं?)</em></li>
+                        <li><strong>Describe any two disorders related to Purine Metabolism.</strong><br><em>(Purine Metabolism से संबंधित किन्हीं दो disorders का वर्णन करें।)</em></li>
+                        <li><strong>Write short notes on: (a) Genetic Code (b) Central Dogma (c) SCID.</strong><br><em>(इन पर संक्षिप्त नोट्स लिखें: (a) Genetic Code (b) Central Dogma (c) SCID.)</em></li>
+                    </ol>
+                </div>
+            </div>
+             <div class="slide-footer">
+                <span class="tag">Disorders are more important than basic structure for exams.</span>
+                <span class="tag">Focus on Gout's lab diagnosis.</span>
+            </div>
+        </section>
+        
+        <!-- Slide 20: Quick Revision Slide -->
+        <section class="slide" id="slide-20">
+             <div class="slide-header">
+                <div class="brand-logo">Prepe</div>
+                <div class="slide-number">Slide 20 / 20</div>
+            </div>
+            <h2 class="slide-title">Quick Revision Slide</h2>
+            <div class="slide-content">
+                <div class="main-panel">
+                    <div class="info-card">
+                        <h3>DNA-RNA Basics</h3>
+                         <ul>
+                             <li><strong>DNA:</strong> Double helix, Deoxyribose, ATGC, Genetic Info Storage.</li>
+                             <li><strong>RNA:</strong> Single strand, Ribose, AUGC, Protein Synthesis (mRNA, tRNA, rRNA).</li>
+                             <li><strong>Central Dogma:</strong> DNA → (Transcription) → RNA → (Translation) → Protein.</li>
+                         </ul>
+                    </div>
+                </div>
+                <div class="side-panel">
+                    <div class="info-card">
+                        <h3>Metabolic Disorders Short Points</h3>
+                        <table class="mini-table">
+                            <tbody>
+                                <tr><td><strong>Gout</strong></td><td>↑ Uric Acid → Joint Crystals</td></tr>
+                                <tr><td><strong>Lesch-Nyhan</strong></td><td>↓ HGPRT → Self-mutilation</td></tr>
+                                <tr><td><strong>SCID</strong></td><td>↓ ADA → No T/B cells</td></tr>
+                                <tr><td><strong>Orotic Aciduria</strong></td><td>↓ UMP Synthase → Anemia</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="tag">All the best for your exams! 👍</span>
+            </div>
+        </section>
+
+
+    </main>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const progressBar = document.getElementById('progressBar');
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (window.pageYOffset / totalHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+    </script>
+
+</body>
+</html>
+
